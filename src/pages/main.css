@@ -1,0 +1,10 @@
+.settings-icons-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.settings-icons {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}

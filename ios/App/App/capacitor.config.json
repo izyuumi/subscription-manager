@@ -1,0 +1,6 @@
+{
+	"appId": "org.bluelock.subscription-manager",
+	"appName": "Subscription Manager",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}
