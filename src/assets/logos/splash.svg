@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1024"
+   height="1024"
+   viewBox="0 0 270.93333 270.93334"
+   version="1.1"
+   id="svg5"
+   inkscape:export-filename="/Users/yumi/bitmap.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   inkscape:version="1.1 (c4e8f9e, 2021-05-24)"
+   sodipodi:docname="splash.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     width="1024mm"
+     units="px"
+     inkscape:lockguides="true"
+     inkscape:zoom="0.60221661"
+     inkscape:cx="527.21893"
+     inkscape:cy="504.80175"
+     inkscape:window-width="1293"
+     inkscape:window-height="846"
+     inkscape:window-x="-1"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#000000;stroke-width:0.264583"
+       id="rect95"
+       width="270.93332"
+       height="270.93332"
+       x="0"
+       y="-4.4408921e-16" />
+    <g
+       inkscape:label="Layer 1"
+       id="layer1-6"
+       style="display:inline"
+       transform="matrix(0.27018469,0,0,0.27018469,97.167845,98.865648)">
+      <path
+         id="path35"
+         style="fill:#0052ff;fill-opacity:1;fill-rule:evenodd;stroke-width:1.92974"
+         d="M 512,62 A 449.99999,449.99999 0 0 0 62,512 449.99999,449.99999 0 0 0 512,962 V 837 A 325.00001,325.00001 0 0 1 187,512 325.00001,325.00001 0 0 1 512,187 325.00001,325.00001 0 0 1 837,512 H 962 A 449.99999,449.99999 0 0 0 512,62 Z"
+         transform="scale(0.26458333)" />
+      <path
+         sodipodi:type="star"
+         style="opacity:1;fill:#0052ff;fill-opacity:1"
+         id="path4381"
+         inkscape:flatsided="true"
+         sodipodi:sides="3"
+         sodipodi:cx="512"
+         sodipodi:cy="837"
+         sodipodi:r1="125"
+         sodipodi:r2="62.5"
+         sodipodi:arg1="1.5707963"
+         sodipodi:arg2="2.6179939"
+         inkscape:rounded="0"
+         inkscape:randomized="0"
+         d="m 512,962 -108.25318,-187.5 216.50635,0 z"
+         transform="matrix(0.26885278,0,0,0.18485555,100.34009,-7.7039563)"
+         inkscape:transform-center-y="5.7767315" />
+    </g>
+  </g>
+</svg>

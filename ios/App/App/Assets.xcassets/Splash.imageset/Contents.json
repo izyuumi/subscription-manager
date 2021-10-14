@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "subman.png",
+      "filename" : "Black.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "subman-1.png",
+      "filename" : "Black-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "subman-2.png",
+      "filename" : "Black-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

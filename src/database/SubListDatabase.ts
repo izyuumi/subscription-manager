@@ -33,6 +33,9 @@ const subListSchema = {
     nextDate: {
       type: "string",
     },
+    price: {
+      type: "string",
+    },
     url: {
       type: "string",
     },

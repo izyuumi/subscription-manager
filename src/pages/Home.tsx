@@ -20,10 +20,12 @@ import {
   IonSearchbar,
   IonSelect,
   IonSelectOption,
+  IonText,
   IonTextarea,
   IonTitle,
   IonToggle,
   IonToolbar,
+  useIonViewDidEnter,
   useIonViewWillEnter,
 } from "@ionic/react";
 import { useRef, useState } from "react";
@@ -36,8 +38,12 @@ import { Keyboard, KeyboardStyle } from "@capacitor/keyboard";
 import { StatusBar, Style } from "@capacitor/status-bar";
 import { Browser } from "@capacitor/browser";
 import { LocalNotifications } from "@capacitor/local-notifications";
+import { App } from "@capacitor/app";
+import { Device } from "@capacitor/device";
 import githubdark from "../assets/images/github-dark.png";
 import githublight from "../assets/images/github-light.png";
+import bluelockorg from "../assets/logos/bluelockorg.png";
+import { useTranslation, Trans } from "react-i18next";
 
 declare type ScheduleEvery =
   | "year"
@@ -77,6 +83,7 @@ const Home: React.FC = () => {
   const [newPeriod, setNewPeriod] = useState<ScheduleEvery>("month");
   const [newStartDate, setNewStartDate] = useState("");
   const [newNextDate, setNewNextDate] = useState("");
+  const [newPrice, setNewPrice] = useState("");
   const [newURL, setNewURL] = useState("");
   const [newNotify, setNewNotify] = useState(false);
   const [newNote, setNewNote] = useState("");
@@ -86,6 +93,39 @@ const Home: React.FC = () => {
   const [dateFormat, setDateFormat] = useState("YYYY-MM-DD");
 
   const [darkmodeSetting, setdarkmodeSetting] = useState("");
+  const [version, setVersion] = useState("0.0.0");
+
+  const languageList = [
+    {
+      lang: "en",
+      langinlang: "English",
+      langinenglish: "English",
+      emoji: "🇺🇸",
+    },
+    {
+      lang: "ja",
+      langinlang: "日本語",
+      langinenglish: "Japanese",
+      emoji: "🇯🇵",
+    },
+    {
+      lang: "fr",
+      langinlang: "Français",
+      langinenglish: "French",
+      emoji: "🇫🇷",
+    },
+    {
+      lang: "es",
+      langinlang: "Español",
+      langinenglish: "Spanish",
+      emoji: "🇪🇸",
+    },
+  ];
+  const { t, i18n } = useTranslation();
+  const changeLanguage = async (lng: string) => {
+    await Storage.set({ key: "language", value: lng });
+    i18n.changeLanguage(lng);
+  };
 
   const setStatusBarStyleDark = async () => {
     await StatusBar.setStyle({ style: Style.Dark });
@@ -122,6 +162,11 @@ const Home: React.FC = () => {
 
   useIonViewWillEnter(() => {
     init();
+  });
+
+  useIonViewDidEnter(async () => {
+    const { version } = await App.getInfo();
+    setVersion(version);
   });
 
   async function init() {
@@ -299,6 +344,7 @@ const Home: React.FC = () => {
         period: newPeriod,
         startDate: newStartDate,
         nextDate: newNextDate,
+        price: newPrice || "",
         url: newURL || "",
         note: newNote || "",
         createdOn: moment().format("YYYY-MM-DD"),
@@ -354,7 +400,9 @@ const Home: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Subscriptions</IonTitle>
+          <IonTitle>
+            <Trans>Subscriptions</Trans>
+          </IonTitle>
           <IonButtons slot="primary">
             <IonButton onClick={() => setSettingsModalIsOpen(true)}>
               <IonIcon slot="icon-only" icon={settings} />
@@ -375,7 +423,9 @@ const Home: React.FC = () => {
                   <IonIcon slot="icon-only" icon={close} />
                 </IonButton>
               </IonButtons>
-              <IonTitle>Settings</IonTitle>
+              <IonTitle>
+                <Trans>Settings</Trans>
+              </IonTitle>
               <IonButtons slot="primary">
                 <IonButton
                   onClick={async () =>
@@ -396,7 +446,9 @@ const Home: React.FC = () => {
           <IonContent>
             <IonList>
               <IonItem>
-                <IonLabel>Date Format</IonLabel>
+                <IonLabel>
+                  <Trans>Date Format</Trans>
+                </IonLabel>
                 <IonSelect
                   value={dateFormat}
                   interface="popover"
@@ -411,10 +463,27 @@ const Home: React.FC = () => {
                 </IonSelect>
               </IonItem>
               <IonItem>
-                <IonLabel>About</IonLabel>
+                <IonLabel>
+                  <Trans>Version</Trans>
+                </IonLabel>
+                <IonText slot="end">{version}</IonText>
               </IonItem>
               <IonItem>
-                <IonLabel>Language</IonLabel>
+                <IonLabel>
+                  <Trans>Language</Trans>
+                </IonLabel>
+                <IonSelect
+                  value={i18n.language}
+                  placeholder="Language"
+                  interface="popover"
+                  onIonChange={(e) => changeLanguage(e.detail.value)}
+                >
+                  {languageList.map((lang) => (
+                    <IonSelectOption value={lang.lang} key={lang.lang}>
+                      {lang.emoji + lang.langinlang}
+                    </IonSelectOption>
+                  ))}
+                </IonSelect>
               </IonItem>
             </IonList>
             <div className="settings-icons-container">
@@ -430,6 +499,20 @@ const Home: React.FC = () => {
                   className="settings-icons"
                   alt="GitHub"
                   src={darkmodeSetting === "dark" ? githublight : githubdark}
+                />
+              </IonButton>
+              <IonButton
+                fill={"clear"}
+                onClick={async () =>
+                  await Browser.open({
+                    url: "https://bluelock.org",
+                  })
+                }
+              >
+                <img
+                  className="settings-icons"
+                  alt="Bluelock Org"
+                  src={bluelockorg}
                 />
               </IonButton>
             </div>
@@ -466,7 +549,9 @@ const Home: React.FC = () => {
             <IonList>
               <IonItem>
                 <IonLabel>
-                  <strong>Name</strong>
+                  <strong>
+                    <Trans>Name</Trans>
+                  </strong>
                 </IonLabel>
                 <IonInput
                   value={newName}
@@ -483,12 +568,16 @@ const Home: React.FC = () => {
                     calculateDates(e.detail.value!, newPeriod)
                   }
                 >
-                  <div slot="title">Start Date</div>
+                  <div slot="title">
+                    <Trans>Start Date</Trans>
+                  </div>
                 </IonDatetime>
               </IonItem>
               <IonItem>
                 <IonLabel>
-                  <strong>Period</strong>
+                  <strong>
+                    <Trans>Period</Trans>
+                  </strong>
                 </IonLabel>
                 <IonSelect
                   value={newPeriod}
@@ -499,21 +588,44 @@ const Home: React.FC = () => {
                     calculateDates(newStartDate, e.detail.value)
                   }
                 >
-                  <IonSelectOption value="day">Daily</IonSelectOption>
-                  <IonSelectOption value="week">Weekly</IonSelectOption>
-                  <IonSelectOption value="month">Monthly</IonSelectOption>
-                  <IonSelectOption value="year">Yearly</IonSelectOption>
+                  <IonSelectOption value="day">
+                    <Trans>Daily</Trans>
+                  </IonSelectOption>
+                  <IonSelectOption value="week">
+                    <Trans>Weekly</Trans>
+                  </IonSelectOption>
+                  <IonSelectOption value="month">
+                    <Trans>Monthly</Trans>
+                  </IonSelectOption>
+                  <IonSelectOption value="year">
+                    <Trans>Yearly</Trans>
+                  </IonSelectOption>
                   {/* <IonSelectOption value="custom">Custom</IonSelectOption> */}
                 </IonSelect>
               </IonItem>
               <IonItem>
                 <IonLabel>
-                  <strong>Next Date</strong>
+                  <strong>
+                    <Trans>Next Date</Trans>
+                  </strong>
                 </IonLabel>
                 <IonLabel className={"ion-text-right"}>
                   <h2>{newNextDate}</h2>
                   <p>{moment(newNextDate).fromNow()}</p>
                 </IonLabel>
+              </IonItem>
+              <IonItem>
+                <IonLabel>
+                  <strong>
+                    <Trans>Price</Trans>
+                  </strong>
+                </IonLabel>
+                <IonInput
+                  value={newPrice}
+                  placeholder={"Price & Currency"}
+                  className={"ion-text-right"}
+                  onIonChange={(e) => setNewPrice(e.detail.value!)}
+                ></IonInput>
               </IonItem>
               <IonItem>
                 <IonLabel>
@@ -527,7 +639,9 @@ const Home: React.FC = () => {
               </IonItem>
               <IonItem>
                 <IonLabel>
-                  <strong>Notify</strong>
+                  <strong>
+                    <Trans>Notify</Trans>
+                  </strong>
                 </IonLabel>
                 <IonToggle
                   checked={newNotify}
@@ -536,7 +650,9 @@ const Home: React.FC = () => {
               </IonItem>
               <IonItem>
                 <IonLabel>
-                  <strong>Note</strong>
+                  <strong>
+                    <Trans>Note</Trans>
+                  </strong>
                 </IonLabel>
                 <IonTextarea
                   value={newNote}
@@ -567,11 +683,13 @@ const Home: React.FC = () => {
           {searchQuery.length > 0
             ? searchList.length > 0
               ? searchList.map((item, index) => (
-                  <IonItemSliding>
-                    <IonItem key={index} routerLink={"/view/" + item.subId}>
+                  <IonItemSliding key={index}>
+                    <IonItem routerLink={"/view/" + item.subId}>
                       <IonLabel>
                         <h2>{item.name}</h2>
-                        <p>Next: {item.nextDate}</p>
+                        <p>
+                          <Trans>Next</Trans>: {item.nextDate}
+                        </p>
                       </IonLabel>
                       <IonLabel className={"ion-text-right"}>
                         <p>{moment(item.nextDate).fromNow()}</p>
@@ -589,11 +707,13 @@ const Home: React.FC = () => {
                 ))
               : null
             : list.map((item, index) => (
-                <IonItemSliding>
+                <IonItemSliding key={index}>
                   <IonItem key={index} routerLink={"/view/" + item.subId}>
                     <IonLabel>
                       <h2>{item.name}</h2>
-                      <p>Next: {item.nextDate}</p>
+                      <p>
+                        <Trans>Next</Trans>: {item.nextDate}
+                      </p>
                     </IonLabel>
                     <IonLabel className={"ion-text-right"}>
                       <p>{moment(item.nextDate).fromNow()}</p>
@@ -617,7 +737,7 @@ const Home: React.FC = () => {
         header={"This cannot be undone."}
         buttons={[
           {
-            text: "Delete",
+            text: t("Delete"),
             cssClass: "danger",
             handler: () => {
               deleteItem(deleteFocus);

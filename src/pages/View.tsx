@@ -46,7 +46,7 @@ interface ViewPageProps
     id: string;
   }> {}
 
-const Home: React.FC<ViewPageProps> = ({ match }) => {
+const View: React.FC<ViewPageProps> = ({ match }) => {
   const history = useHistory();
 
   const [deleteAlert, setDeleteAlert] = useState(false);
@@ -57,6 +57,7 @@ const Home: React.FC<ViewPageProps> = ({ match }) => {
   const [period, setPeriod] = useState<ScheduleEvery>("month");
   const [startDate, setStartDate] = useState("");
   const [nextDate, setNextDate] = useState("");
+  const [price, setPrice] = useState("");
   const [URL, setURL] = useState("");
   const [notify, setNotify] = useState(true);
   const [notificationId, setNotificationId] = useState<number>();
@@ -100,6 +101,7 @@ const Home: React.FC<ViewPageProps> = ({ match }) => {
           setPeriod(list[0].period);
           setStartDate(list[0].startDate);
           setNextDate(list[0].nextDate);
+          setPrice(list[0].price);
           setURL(list[0].url);
           setNotify(list[0].notify);
           setNotificationId(list[0].notificationId);
@@ -191,6 +193,7 @@ const Home: React.FC<ViewPageProps> = ({ match }) => {
             period: period,
             startDate: startDate,
             nextDate: nextDate,
+            price: price || "",
             url: URL || "",
             notify: notify,
             note: note || "",
@@ -302,6 +305,17 @@ const Home: React.FC<ViewPageProps> = ({ match }) => {
           </IonItem>
           <IonItem>
             <IonLabel>
+              <strong>Price</strong>
+            </IonLabel>
+            <IonInput
+              value={price}
+              placeholder={"Price & Currency"}
+              onIonChange={(e) => setPrice(e.detail.value!)}
+              readonly={!isEditing}
+            ></IonInput>
+          </IonItem>
+          <IonItem>
+            <IonLabel>
               <strong>URL</strong>
             </IonLabel>
             <IonInput
@@ -380,4 +394,4 @@ const Home: React.FC<ViewPageProps> = ({ match }) => {
   );
 };
 
-export default Home;
+export default View;
