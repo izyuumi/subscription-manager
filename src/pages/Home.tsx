@@ -555,7 +555,8 @@ const Home: React.FC = () => {
                 </IonLabel>
                 <IonInput
                   value={newName}
-                  placeholder="Enter Name"
+                  placeholder={t("Name")}
+                  className={"ion-text-right"}
                   onIonChange={(e) => setNewName(e.detail.value!)}
                 ></IonInput>
               </IonItem>
@@ -622,7 +623,7 @@ const Home: React.FC = () => {
                 </IonLabel>
                 <IonInput
                   value={newPrice}
-                  placeholder={"Price & Currency"}
+                  placeholder={t("Price & Currency")}
                   className={"ion-text-right"}
                   onIonChange={(e) => setNewPrice(e.detail.value!)}
                 ></IonInput>
@@ -633,7 +634,8 @@ const Home: React.FC = () => {
                 </IonLabel>
                 <IonInput
                   value={newURL}
-                  placeholder="Enter URL"
+                  placeholder={t("URL")}
+                  className={"ion-text-right"}
                   onIonChange={(e) => setNewURL(e.detail.value!)}
                 ></IonInput>
               </IonItem>
@@ -657,7 +659,7 @@ const Home: React.FC = () => {
                 <IonTextarea
                   value={newNote}
                   auto-grow
-                  placeholder="Note"
+                  placeholder={t("Note")}
                   onIonChange={(e) => setNewNote(e.detail.value!)}
                 ></IonTextarea>
               </IonItem>
