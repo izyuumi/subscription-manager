@@ -6,17 +6,18 @@
 A simple on device subscription manager app for mobile develped by BLO.
 
 ## Things you can do
-- Obviously, you can manage your subscriptions for your music service monthly payments, gym membership, Netflix subscriptions, and more.
-- You can even add people's birthday's to your list!
+- Obviously, you can manage your subscriptions for your music service monthly payments, gym membership, Netflix subscriptions, and more 🎵 
+- You can even add people's birthday's to your list! 🎉
+- No need to ask, but we got both light and dark mode 🌙
 
 ## Upcoming Features
-- Sync on cloud
-- Transfer data between local devices
+- Optional sync with cloud ☁️
+- Transfer data between local devices 📲
 
 For any suggestions, please suggest in Discussions.
 
 ## Privacy
-We as BLO put privacy before anything. So, we have developped this app so that everything is done on-device.
+We as BLO put privacy before anything. So, we have developped this app so that everything is done on-device. 🔒
 
 ## Legal Attribution
 App Store and App Store logo are trademarks of Apple Inc., registered in the U.S. and other countries.
@@ -27,7 +28,7 @@ Google Play and the Google Play logo are trademarks of Google LLC.
 Code is licensed under [MIT License](./LICENSE).
 
 ## Contributing for Translation
-All text being added to Blue Privacy Extension is done initially in English (en) and then is translated by real people into other languages. We're missing translations for many languages and some translations might be incomplete or poor quality.
+All text being added to our Subscription Manager is done initially in English (en) and then is translated by real people into other languages. We're missing translations for many languages and some translations might be incomplete or poor quality.
 
 For everything you'd need to get started, check out [https://www.transifex.com/bluelock-org/subscription-manager/](https://www.transifex.com/bluelock-org/subscription-manager/)
 
