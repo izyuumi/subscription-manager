@@ -4,6 +4,7 @@
   "Daily": "Daily",
   "Date Format": "Date Format",
   "Delete": "Delete",
+  "Edit": "Edit",
   "Language": "Language",
   "Monthly": "Monthly",
   "Name": "Name",
@@ -13,7 +14,9 @@
   "Notify": "Notify",
   "Period": "Period",
   "Price": "Price",
+  "Price & Currency": "Price & Currency",
   "Save": "Save",
+  "Search": "Search",
   "Settings": "Settings",
   "Start Date": "Start Date",
   "Subscriptions": "Subscriptions",
@@ -21,6 +24,5 @@
   "Version": "Version",
   "Weekly": "Weekly",
   "Yearly": "Yearly",
-  "Price & Currency": "Price & Currency"
-
+  "Created on": "Created on"
 }

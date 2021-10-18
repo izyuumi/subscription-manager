@@ -30,6 +30,7 @@ import moment from "moment";
 import { RouteComponentProps } from "react-router";
 import { useHistory } from "react-router-dom";
 import { LocalNotifications } from "@capacitor/local-notifications";
+import { useTranslation, Trans } from "react-i18next";
 
 declare type ScheduleEvery =
   | "year"
@@ -47,6 +48,8 @@ interface ViewPageProps
   }> {}
 
 const View: React.FC<ViewPageProps> = ({ match }) => {
+  const { t, i18n } = useTranslation();
+
   const history = useHistory();
 
   const [deleteAlert, setDeleteAlert] = useState(false);
@@ -232,9 +235,13 @@ const View: React.FC<ViewPageProps> = ({ match }) => {
           <IonTitle>{name}</IonTitle>
           <IonButtons slot="primary">
             {isEditing ? (
-              <IonButton onClick={() => editItem()}>Save</IonButton>
+              <IonButton onClick={() => editItem()}>
+                <Trans>Save</Trans>
+              </IonButton>
             ) : (
-              <IonButton onClick={() => setIsEditing(true)}>Edit</IonButton>
+              <IonButton onClick={() => setIsEditing(true)}>
+                <Trans>Edit</Trans>
+              </IonButton>
             )}
           </IonButtons>
         </IonToolbar>
@@ -244,11 +251,14 @@ const View: React.FC<ViewPageProps> = ({ match }) => {
         <IonList>
           <IonItem>
             <IonLabel>
-              <strong>Name</strong>
+              <strong>
+                <Trans>Name</Trans>
+              </strong>
             </IonLabel>
             <IonInput
               value={name}
               placeholder="Enter Name"
+              className={"ion-text-right"}
               onIonChange={(e) => setName(e.detail.value!)}
               readonly={!isEditing}
             ></IonInput>
@@ -262,12 +272,16 @@ const View: React.FC<ViewPageProps> = ({ match }) => {
                 onIonChange={(e) => calculateDates(e.detail.value!, period)}
                 readonly={!isEditing}
               >
-                <div slot="title">Start Date</div>
+                <div slot="title">
+                  <Trans>Start Date</Trans>
+                </div>
               </IonDatetime>
             ) : (
               <>
                 <IonLabel>
-                  <strong>Start Date</strong>
+                  <strong>
+                    <Trans>Start Date</Trans>
+                  </strong>
                 </IonLabel>
                 <IonLabel className="ion-text-right">
                   {moment(startDate).format("YYYY-MM-DD")}
@@ -277,7 +291,9 @@ const View: React.FC<ViewPageProps> = ({ match }) => {
           </IonItem>
           <IonItem>
             <IonLabel>
-              <strong>Period</strong>
+              <strong>
+                <Trans>Period</Trans>
+              </strong>
             </IonLabel>
             <IonSelect
               value={period}
@@ -287,16 +303,26 @@ const View: React.FC<ViewPageProps> = ({ match }) => {
               onIonChange={(e) => calculateDates(startDate, e.detail.value)}
               disabled={!isEditing}
             >
-              <IonSelectOption value="day">Daily</IonSelectOption>
-              <IonSelectOption value="week">Weekly</IonSelectOption>
-              <IonSelectOption value="month">Monthly</IonSelectOption>
-              <IonSelectOption value="year">Yearly</IonSelectOption>
+              <IonSelectOption value="day">
+                <Trans>Daily</Trans>
+              </IonSelectOption>
+              <IonSelectOption value="week">
+                <Trans>Weekly</Trans>
+              </IonSelectOption>
+              <IonSelectOption value="month">
+                <Trans>Monthly</Trans>
+              </IonSelectOption>
+              <IonSelectOption value="year">
+                <Trans>Yearly</Trans>
+              </IonSelectOption>
               {/* <IonSelectOption value="custom">Custom</IonSelectOption> */}
             </IonSelect>
           </IonItem>
           <IonItem>
             <IonLabel>
-              <strong>Next Date</strong>
+              <strong>
+                <Trans>Next Date</Trans>
+              </strong>
             </IonLabel>
             <IonLabel className={"ion-text-right"}>
               <h2>{nextDate}</h2>
@@ -305,22 +331,28 @@ const View: React.FC<ViewPageProps> = ({ match }) => {
           </IonItem>
           <IonItem>
             <IonLabel>
-              <strong>Price</strong>
+              <strong>
+                <Trans>Price</Trans>
+              </strong>
             </IonLabel>
             <IonInput
               value={price}
-              placeholder={"Price & Currency"}
+              placeholder={t("Price & Currency")}
+              className={"ion-text-right"}
               onIonChange={(e) => setPrice(e.detail.value!)}
               readonly={!isEditing}
             ></IonInput>
           </IonItem>
           <IonItem>
             <IonLabel>
-              <strong>URL</strong>
+              <strong>
+                <Trans>URL</Trans>
+              </strong>
             </IonLabel>
             <IonInput
               value={URL}
-              placeholder="Enter URL"
+              placeholder={t("URL")}
+              className={"ion-text-right"}
               onIonChange={(e) => setURL(e.detail.value!)}
               readonly={!isEditing}
             ></IonInput>
@@ -335,7 +367,9 @@ const View: React.FC<ViewPageProps> = ({ match }) => {
           </IonItem>
           <IonItem>
             <IonLabel>
-              <strong>Notify</strong>
+              <strong>
+                <Trans>Notify</Trans>
+              </strong>
             </IonLabel>
             <IonToggle
               checked={notify}
@@ -347,19 +381,23 @@ const View: React.FC<ViewPageProps> = ({ match }) => {
           </IonItem>
           <IonItem>
             <IonLabel>
-              <strong>Note</strong>
+              <strong>
+                <Trans>Note</Trans>
+              </strong>
             </IonLabel>
             <IonTextarea
               value={note}
               auto-grow
               readonly={!isEditing}
-              placeholder="Note"
+              placeholder={t("Note")}
               onIonChange={(e) => setNote(e.detail.value!)}
             ></IonTextarea>
           </IonItem>
           <IonItem>
             <IonLabel>
-              <strong>Created on</strong>
+              <strong>
+                <Trans>Created on</Trans>
+              </strong>
             </IonLabel>
             <IonLabel className={"ion-text-right"}>{createdOn}</IonLabel>
           </IonItem>
@@ -378,14 +416,14 @@ const View: React.FC<ViewPageProps> = ({ match }) => {
         header={"This cannot be undone."}
         buttons={[
           {
-            text: "Delete",
+            text: t("Delete"),
             cssClass: "danger",
             handler: () => {
               deleteItem();
             },
           },
           {
-            text: "Cancel",
+            text: t("Cancel"),
             role: "cancel",
           },
         ]}

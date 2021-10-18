@@ -39,7 +39,6 @@ import { StatusBar, Style } from "@capacitor/status-bar";
 import { Browser } from "@capacitor/browser";
 import { LocalNotifications } from "@capacitor/local-notifications";
 import { App } from "@capacitor/app";
-import { Device } from "@capacitor/device";
 import githubdark from "../assets/images/github-dark.png";
 import githublight from "../assets/images/github-light.png";
 import bluelockorg from "../assets/logos/bluelockorg.png";
@@ -202,7 +201,7 @@ const Home: React.FC = () => {
         .then((list: any) => {
           setList(
             list.sort((a: any, b: any) =>
-              reformatDate(a.nextDate) > reformatDate(b.nextDate) ? 1 : -1
+              reformatDate(a.nextDate) >= reformatDate(b.nextDate) ? 1 : -1
             )
           );
         });
@@ -223,7 +222,7 @@ const Home: React.FC = () => {
       }
       setList(
         list.sort((a: any, b: any) =>
-          reformatDate(a.nextDate) > reformatDate(b.nextDate) ? 1 : -1
+          reformatDate(a.nextDate) >= reformatDate(b.nextDate) ? 1 : -1
         )
       );
     });
@@ -540,7 +539,9 @@ const Home: React.FC = () => {
                 </IonButton>
               </IonButtons>
               <IonButtons slot="primary">
-                <IonButton onClick={() => addNewItem()}>Save</IonButton>
+                <IonButton onClick={() => addNewItem()}>
+                  <Trans>Save</Trans>
+                </IonButton>
               </IonButtons>
             </IonToolbar>
           </IonHeader>
