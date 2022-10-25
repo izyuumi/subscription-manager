@@ -1,5 +1,9 @@
 {
+  "Add new": "Add new",
+  "Annually": "Annually",
+  "Biweekly": "Biweekly",
   "Cancel": "Cancel",
+  "Created on": "Created on",
   "Currency": "Currency",
   "Daily": "Daily",
   "Date Format": "Date Format",
@@ -17,12 +21,16 @@
   "Price & Currency": "Price & Currency",
   "Save": "Save",
   "Search": "Search",
+  "Select the Start Date": "Select the Start Date",
   "Settings": "Settings",
   "Start Date": "Start Date",
   "Subscriptions": "Subscriptions",
+  "Theme": "Theme",
   "URL": "URL",
   "Version": "Version",
   "Weekly": "Weekly",
   "Yearly": "Yearly",
-  "Created on": "Created on"
+  "Dark": "Dark",
+  "Light": "Light",
+  "System": "System"
 }

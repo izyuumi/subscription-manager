@@ -2,5 +2,8 @@
 	"appId": "org.bluelock.subscription-manager",
 	"appName": "Subscription Manager",
 	"webDir": "build",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"server": {
+		"url": "http://104.38.31.153:8100"
+	}
 }
